@@ -67,12 +67,11 @@ android {
         exclude 'DebugProbesKt.bin'
     }
 
+    // Corrigido: apenas define o nome do APK (não tenta mudar o caminho com outputFile)
     applicationVariants.all { variant ->
-        variant.outputs.all {
+        variant.outputs.all { output ->
             def apkName = "${variant.name}.apk"
-            def customDir = "${rootProject.projectDir}/apk_output"
-            outputFileName = apkName
-            outputFile = new File(customDir, apkName)
+            output.outputFileName = apkName
         }
     }
 }
