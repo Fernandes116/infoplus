@@ -45,16 +45,19 @@ jobs:
       - name: Gerar código (build_runner + drift)
         run: flutter pub run build_runner build --delete-conflicting-outputs
 
+      - name: Dar permissão de execução para gradlew
+        run: chmod +x android/gradlew
+
       - name: Build APK Debug via Gradle
         run: |
           flutter clean
           cd android
           ./gradlew assembleDebug
 
-      - name: Verificar APK gerado na pasta padrão
-        run: find android/build/outputs/apk/debug/ -name "*.apk"
+      - name: Verificar APK gerado
+        run: find build/ -name "*.apk"
 
-      - name: Upload do APK Debug
+      - name: Upload do APK Debug gerado
         uses: actions/upload-artifact@v4
         with:
           name: infoplus-debug-apk
