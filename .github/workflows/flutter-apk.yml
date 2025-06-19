@@ -34,10 +34,10 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
         with:
-          build-tools-version: "35.0.0"
+          build-tools-version: "34.0.0"
 
       - name: Instalar build-tools com AAPT2
-        run: sdkmanager "build-tools;35.0.0"
+        run: sdkmanager "build-tools;34.0.0"
 
       - name: Instalar dependências
         run: flutter pub get
