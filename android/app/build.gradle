@@ -66,6 +66,15 @@ android {
         exclude '/META-INF/{AL2.0,LGPL2.1}'
         exclude 'DebugProbesKt.bin'
     }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            def apkName = "${variant.name}.apk"
+            def customDir = "${rootProject.projectDir}/apk_output"
+            outputFileName = apkName
+            outputFile = new File(customDir, apkName)
+        }
+    }
 }
 
 flutter {
