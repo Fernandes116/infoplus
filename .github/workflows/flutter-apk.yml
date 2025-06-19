@@ -53,9 +53,10 @@ jobs:
       - name: Verificar APK gerado
         run: find build/ -name "*.apk"
 
-      - name: Upload do APK Debug para GitHub Actions
+      - name: Upload de todos os APKs encontrados
         uses: actions/upload-artifact@v4
         with:
-          name: infoplus-debug-apk
-          path: build/app/outputs/flutter-apk/app-debug.apk
+          name: infoplus-apks
+          path: |
+            build/**/outputs/**/*.apk
           retention-days: 7
