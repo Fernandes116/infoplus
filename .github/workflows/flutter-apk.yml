@@ -45,18 +45,17 @@ jobs:
       - name: Gerar código (build_runner + drift)
         run: flutter pub run build_runner build --delete-conflicting-outputs
 
-      - name: Build APK Debug
+      - name: Build APK Debug via Gradle
         run: |
           flutter clean
-          flutter build apk --debug
+          ./gradlew assembleDebug
 
-      - name: Verificar APK gerado
-        run: find build/ -name "*.apk"
+      - name: Verificar APK gerado na pasta customizada
+        run: find apk_output/ -name "*.apk"
 
-      - name: Upload de todos os APKs encontrados
+      - name: Upload do APK Debug gerado na pasta customizada
         uses: actions/upload-artifact@v4
         with:
-          name: infoplus-apks
-          path: |
-            build/**/outputs/**/*.apk
+          name: infoplus-debug-apk
+          path: apk_output/debug.apk
           retention-days: 7
