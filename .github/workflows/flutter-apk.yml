@@ -34,10 +34,10 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
         with:
-          build-tools-version: "34.0.0"
+          build-tools-version: "35.0.0"
 
       - name: Instalar build-tools com AAPT2
-        run: sdkmanager "build-tools;34.0.0"
+        run: sdkmanager "build-tools;35.0.0"
 
       - name: Instalar dependências
         run: flutter pub get
@@ -45,14 +45,15 @@ jobs:
       - name: Gerar código (build_runner + drift)
         run: flutter pub run build_runner build --delete-conflicting-outputs
 
+      - name: Limpar build Flutter
+        run: flutter clean
+
       - name: Dar permissão de execução para gradlew
         run: chmod +x android/gradlew
 
       - name: Build APK Debug via Gradle
-        run: |
-          flutter clean
-          cd android
-          ./gradlew assembleDebug
+        run: ./gradlew assembleDebug
+        working-directory: android
 
       - name: Verificar APK gerado
         run: find build/ -name "*.apk"
