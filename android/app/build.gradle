@@ -6,7 +6,7 @@ apply plugin: 'dev.flutter.flutter-gradle-plugin'
 
 android {
     namespace = 'com.ussd.infoplus'
-    compileSdkVersion 34
+    compileSdkVersion 35
     ndkVersion = '27.0.12077973'
 
     compileOptions {
@@ -22,7 +22,7 @@ android {
     defaultConfig {
         applicationId "com.ussd.infoplus"
         minSdkVersion 23
-        targetSdkVersion 34
+        targetSdkVersion 35
         versionCode 2
         versionName "2.0.0"
         multiDexEnabled true
